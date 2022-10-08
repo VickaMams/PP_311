@@ -1,6 +1,5 @@
 package ru.mams.PP_311.controller;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -15,8 +14,11 @@ import java.util.List;
 @Controller
 public class MyController {
     public static boolean checkUpdate = false;
-    @Autowired
-    private UserService userService;
+    private final UserService userService;
+
+    public MyController(UserService userService) {
+        this.userService = userService;
+    }
 
     @RequestMapping("/")
     public String  showAllEmployees(Model model){
